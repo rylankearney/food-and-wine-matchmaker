@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<header>
+		<div class="container">
+		  <h1 id="page-title">Art with <span id="wine-choice">Monkeys</span></h1>
+	
+		  <form action="">
+			<label for="red-wine">Choose your wine:</label>
+			<select name="reds" id="reds">
+				<option value="" disabled selected hidden>Red</option>
+				<option value="cabsauv">Cabernet Sauvignon</option>
+			 	<option value="malbec">Malbec</option>
+			  	<option value="merlot">Merlot</option>
+			  	<option value="pinotnoir">Pinot Noir</option>
+			  	<option value="shiraz">Shiraz</option>
+			</select>
+
+			<select name="whites" id="whites" placeholder="White">
+				<option value="chard">Chardonnay</option>
+				<option value="gewurtz">Gewürztraminer</option>
+				<option value="pinotgrigio">Pinot Grigio</option>
+				<option value="reisling">Reisling</option>
+				<option value="sauvblanc">Sauvignon Blanc</option>
+			  </select>
+		  </form>
+		</div>
+	  </header>
+	  <main>
+		<div class="container" id="artwork"></div>
+	  </main>
+
+	
+	<script>
+
+		//Namespace object for our app
+		const recipesApp = {};
+
+		
+		recipesApp.key = `6743bf8acd0e4eb1adb560b4388b2926`;
+
+		//initializer function
+		recipesApp.init = () => {
+			//
+			//recipesApp.getRecipes(`malbec`)
+		}
+
+		recipesApp.setUpEventListeners = () => {
+			document.querySelector(`#reds`).addEventListener(`change`, function() {
+
+			})
+		}
+
+		//API call function: gets data from spoonacular
+		recipesApp.getPairings = (query) => {
+			//URL object w/ query argument
+			const url = new URL(`https://api.spoonacular.com/food/wine/dishes`);
+
+			url.search = new URLSearchParams({
+				key: recipesApp.key,
+				wine: string
+			})
+
+			fetch(url)
+				.then( (results) => results.json() )
+				console.log(results)
+				.then( (data) => {
+					recipesApp.displayPairings(data)
+					
+				})
+		}
+		
+	</script>
+</body>
+</html>
